@@ -17,7 +17,6 @@ import 'package:flutter/material.dart';
 class LoginPage extends StatefulWidget {
   @override
   _LoginPageState createState() => _LoginPageState();
-
 }
 
 class _LoginPageState extends State<LoginPage> {
@@ -36,14 +35,17 @@ class _LoginPageState extends State<LoginPage> {
               children: <Widget>[
                 Image.asset('assets/diamond.png'),
                 SizedBox(height: 16.0),
-                Text('SHRINE'),
+                Text(
+                  'SHRINE',
+                  style: Theme.of(context).textTheme.headline5,
+                ),
               ],
             ),
             SizedBox(height: 120.0),
             TextField(
               controller: _usernameController,
               decoration: InputDecoration(
-                filled: true,
+                // filled: true,
                 labelText: 'Username',
               ),
             ),
@@ -53,11 +55,11 @@ class _LoginPageState extends State<LoginPage> {
             TextField(
               controller: _passwordController,
               decoration: InputDecoration(
-                filled: true,
+                // filled: true,
                 labelText: 'Password',
               ),
               obscureText: true,
-            ),// TODO: Add button bar (101)
+            ), // TODO: Add button bar (101)
             ButtonBar(
               // TODO: Add a beveled rectangular border to CANCEL (103)
               children: <Widget>[
