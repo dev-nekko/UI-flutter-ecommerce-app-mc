@@ -16,6 +16,7 @@ import 'package:flutter/material.dart';
 import 'colors.dart';
 import 'home.dart';
 import 'login.dart';
+import 'supplemental/cut_corners_border.dart';
 
 // TODO: Convert ShrineApp to stateful widget (104)
 class ShrineApp extends StatelessWidget {
@@ -54,36 +55,46 @@ final ThemeData _kShrineTheme = _buildShrineTheme();
 ThemeData _buildShrineTheme() {
   final ThemeData base = ThemeData.light();
   return base.copyWith(
-    accentColor: kShrineBrown900,
-    primaryColor: kShrinePink100,
+    primaryColor: kShrinePurple,
     buttonTheme: base.buttonTheme.copyWith(
-      buttonColor: kShrinePink100,
-      colorScheme: base.colorScheme.copyWith(
-        secondary: kShrineBrown900,
-      ),
-    ),
-    buttonBarTheme: base.buttonBarTheme.copyWith(
-      buttonTextTheme: ButtonTextTheme.accent,
-    ),
+        buttonColor: kShrinePurple,
+        textTheme: ButtonTextTheme.primary,
+        colorScheme: ColorScheme.light().copyWith(primary: kShrinePurple)
+        // accentColor: kShrineBrown900,
+        // primaryColor: kShrinePink100,
+        // buttonTheme: base.buttonTheme.copyWith(
+        //   buttonColor: kShrinePink100,
+        //   colorScheme: base.colorScheme.copyWith(
+        //     secondary: kShrineBrown900,
+        //   ),
+
+        //),
+        // buttonBarTheme: base.buttonBarTheme.copyWith(
+        //   buttonTextTheme: ButtonTextTheme.accent,
+        ),
     scaffoldBackgroundColor: kShrineBackgroundWhite,
-    cardColor: kShrineBackgroundWhite,
-    textSelectionColor: kShrinePink100,
-    errorColor: kShrineErrorRed,
+    // cardColor: kShrineBackgroundWhite,
+    //textSelectionColor: kShrinePink100,
+    // errorColor: kShrineErrorRed,
     // TODO: Add the text themes (103)
     textTheme: _buildShrineTextTheme(base.textTheme),
     primaryTextTheme: _buildShrineTextTheme(base.primaryTextTheme),
     accentTextTheme: _buildShrineTextTheme(base.accentTextTheme),
     // TODO: Add the icon themes (103)
-    primaryIconTheme: base.iconTheme.copyWith(color: kShrineBrown900),
+    primaryIconTheme: base.iconTheme.copyWith(color: kShrineSurfaceWhite),
+    //primaryIconTheme: base.iconTheme.copyWith(color: kShrineBrown900),
     // TODO: Decorate the inputs (103)
     inputDecorationTheme: InputDecorationTheme(
-      focusedBorder: OutlineInputBorder(
+      focusedBorder: CutCornersBorder(
+        //focusedBorder: OutlineInputBorder(
         borderSide: BorderSide(
           width: 2.0,
-          color: kShrineBrown900,
+          color: kShrinePurple,
+          //color: kShrineBrown900,
         ),
       ),
-      border: OutlineInputBorder(),
+      border: CutCornersBorder(), // Replace code
+      //border: OutlineInputBorder(),
     ),
   );
 }
@@ -107,7 +118,7 @@ TextTheme _buildShrineTextTheme(TextTheme base) {
       )
       .apply(
         fontFamily: 'Rubik',
-        displayColor: kShrineBrown900,
-        bodyColor: kShrineBrown900,
+        // displayColor: kShrineBrown900,
+        // bodyColor: kShrineBrown900,
       );
 }

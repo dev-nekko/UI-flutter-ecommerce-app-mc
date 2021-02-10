@@ -17,6 +17,7 @@ import 'package:intl/intl.dart';
 
 import 'model/products_repository.dart';
 import 'model/product.dart';
+import 'supplemental/asymmetric_view.dart';
 
 class HomePage extends StatelessWidget {
   // TODO: Make a collection of cards (102)
@@ -65,6 +66,7 @@ class HomePage extends StatelessWidget {
       return Card(
         clipBehavior: Clip.antiAlias,
         // TODO: Adjust card heights (103)
+        elevation: 0.0,
         child: Column(
           // TODO: Center items on the card (103)
           //crossAxisAlignment: CrossAxisAlignment.start,
@@ -122,12 +124,14 @@ class HomePage extends StatelessWidget {
       // TODO: Add app bar (102)
       appBar: AppBar(
         // TODO: Add buttons and title (102)
+        //brightness: Brightness.light,
+        brightness: Brightness.dark,
         title: Text('SHRINE'),
         actions: <Widget>[
           IconButton(
             icon: Icon(
               Icons.search,
-              semanticLabel: 'search',
+              //semanticLabel: 'search',
             ),
             onPressed: () {
               print('Search button');
@@ -136,7 +140,7 @@ class HomePage extends StatelessWidget {
           IconButton(
             icon: Icon(
               Icons.tune,
-              semanticLabel: 'filter',
+              //semanticLabel: 'filter',
             ),
             onPressed: () {
               print('Filter button');
@@ -153,40 +157,42 @@ class HomePage extends StatelessWidget {
           },
         ),
       ),
+      body: AsymmetricView(
+          products: ProductsRepository.loadProducts(Category.all)),
       // TODO: Add a grid view (102)
-      body: GridView.count(
-          crossAxisCount: 2,
-          padding: EdgeInsets.all(16.0),
-          childAspectRatio: 8.0 / 9.0,
-          // TODO: Build a grid of cards (102)
-          children: _buildGridCards(context)
-          //children: _buildGridCards(10)
-          // children: <Widget>[
-          //   Card(
-          //     clipBehavior: Clip.antiAlias,
-          //     child: Column(
-          //       crossAxisAlignment: CrossAxisAlignment.start,
-          //       children: <Widget>[
-          //         AspectRatio(
-          //           aspectRatio: 18.0 / 11.0,
-          //           child: Image.asset('assets/diamond.png'),
-          //         ),
-          //         Padding(
-          //           padding: EdgeInsets.fromLTRB(16.0, 12.0, 16.0, 8.0),
-          //           child: Column(
-          //             crossAxisAlignment: CrossAxisAlignment.start,
-          //             children: <Widget>[
-          //               Text('Title'),
-          //               SizedBox(height: 8.0),
-          //               Text('Secondary Text'),
-          //             ],
-          //           ),
-          //         ),
-          //       ],
-          //     ),
-          //   )
-          // ],
-          ),
+      // body: GridView.count(
+      //     crossAxisCount: 2,
+      //     padding: EdgeInsets.all(16.0),
+      //     childAspectRatio: 8.0 / 9.0,
+      //     // TODO: Build a grid of cards (102)
+      //     children: _buildGridCards(context)
+      //     //children: _buildGridCards(10)
+      //     // children: <Widget>[
+      //     //   Card(
+      //     //     clipBehavior: Clip.antiAlias,
+      //     //     child: Column(
+      //     //       crossAxisAlignment: CrossAxisAlignment.start,
+      //     //       children: <Widget>[
+      //     //         AspectRatio(
+      //     //           aspectRatio: 18.0 / 11.0,
+      //     //           child: Image.asset('assets/diamond.png'),
+      //     //         ),
+      //     //         Padding(
+      //     //           padding: EdgeInsets.fromLTRB(16.0, 12.0, 16.0, 8.0),
+      //     //           child: Column(
+      //     //             crossAxisAlignment: CrossAxisAlignment.start,
+      //     //             children: <Widget>[
+      //     //               Text('Title'),
+      //     //               SizedBox(height: 8.0),
+      //     //               Text('Secondary Text'),
+      //     //             ],
+      //     //           ),
+      //     //         ),
+      //     //       ],
+      //     //     ),
+      //     //   )
+      //     // ],
+      //     ),
       // TODO: Set resizeToAvoidBottomInset (101)
       resizeToAvoidBottomInset: false,
     );

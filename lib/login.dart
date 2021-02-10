@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import 'package:flutter/material.dart';
+import 'colors.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -23,6 +24,25 @@ class _LoginPageState extends State<LoginPage> {
   // TODO: Add text editing controllers (101)
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _unfocusedColor = Colors.grey[600];
+  final _usernameFocusNode = FocusNode();
+  final _passwordFocusNode = FocusNode();
+
+  @override
+  void initState() {
+    super.initState();
+    _usernameFocusNode.addListener(() {
+      setState(() {
+        //Redraw so that the username label reflects the focus state
+      });
+    });
+    _passwordFocusNode.addListener(() {
+      setState(() {
+        //Redraw so that the password label reflects the focus state
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +53,11 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(height: 80.0),
             Column(
               children: <Widget>[
-                Image.asset('assets/diamond.png'),
+                //Image.asset('assets/diamond.png'),
+                Image.asset(
+                  'assets/diamond.png',
+                  color: kShrineBlack, // New code
+                ),
                 SizedBox(height: 16.0),
                 Text(
                   'SHRINE',
@@ -47,7 +71,12 @@ class _LoginPageState extends State<LoginPage> {
               decoration: InputDecoration(
                 // filled: true,
                 labelText: 'Username',
+                labelStyle: TextStyle(
+                    color: _usernameFocusNode.hasFocus
+                        ? Theme.of(context).accentColor
+                        : _unfocusedColor),
               ),
+              focusNode: _usernameFocusNode,
             ),
             // spacer
             SizedBox(height: 12.0),
@@ -57,8 +86,13 @@ class _LoginPageState extends State<LoginPage> {
               decoration: InputDecoration(
                 // filled: true,
                 labelText: 'Password',
+                labelStyle: TextStyle(
+                    color: _passwordFocusNode.hasFocus
+                        ? Theme.of(context).accentColor
+                        : _unfocusedColor),
               ),
-              obscureText: true,
+              focusNode: _passwordFocusNode,
+              //obscureText: true,
             ), // TODO: Add button bar (101)
             ButtonBar(
               // TODO: Add a beveled rectangular border to CANCEL (103)
@@ -67,6 +101,9 @@ class _LoginPageState extends State<LoginPage> {
                 //TextButton(
                 FlatButton(
                   child: Text('CANCEL'),
+                  shape: BeveledRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(7.0)),
+                  ),
                   onPressed: () {
                     // TODO: Clear the text fields (101)
                     _usernameController.clear();
@@ -78,6 +115,10 @@ class _LoginPageState extends State<LoginPage> {
                 //ElevatedButton(
                 RaisedButton(
                   child: Text('NEXT'),
+                  elevation: 8.0, // New code
+                  shape: BeveledRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(7.0)),
+                  ),
                   onPressed: () {
                     // TODO: Show the next page (101)
                     Navigator.pop(context);
